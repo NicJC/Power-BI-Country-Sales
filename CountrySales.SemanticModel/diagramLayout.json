@@ -11,7 +11,7 @@
         {
           "location": {
             "x": 683,
-            "y": 414.25
+            "y": 438.125
           },
           "nodeIndex": "SalesTransactions",
           "nodeLineageTag": "b176f062-22ad-43f2-8217-fe50676acea9",
@@ -19,12 +19,12 @@
             "height": 573,
             "width": 317
           },
-          "zIndex": 0
+          "zIndex": 7
         },
         {
           "location": {
             "x": 1165,
-            "y": 47.75
+            "y": 71.625
           },
           "nodeIndex": "Order",
           "nodeLineageTag": "b7a8488b-1c2b-419c-9d3c-36d17538d7a4",
@@ -32,12 +32,12 @@
             "height": 222,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
             "x": 412,
-            "y": 96.75
+            "y": 120.625
           },
           "nodeIndex": "Product",
           "nodeLineageTag": "09b5388d-f02d-4418-9547-454b8424cba2",
@@ -45,12 +45,12 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
             "x": 805,
-            "y": 54.75
+            "y": 78.625
           },
           "nodeIndex": "Region",
           "nodeLineageTag": "ff54f5f1-1c5d-4d27-a8c7-34765d79fef4",
@@ -58,12 +58,12 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
             "x": 89,
-            "y": 200.75
+            "y": 224.625
           },
           "nodeIndex": "Unit",
           "nodeLineageTag": "f6985089-4dbf-4e7d-a1ea-a91a5739dcc8",
@@ -71,12 +71,12 @@
             "height": 224,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         },
         {
           "location": {
             "x": 1412,
-            "y": 400.5
+            "y": 424.375
           },
           "nodeIndex": "DimDate",
           "nodeLineageTag": "34ac41c1-1b63-4fce-9962-643646df2756",
@@ -84,7 +84,20 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1884,
+            "y": 237.625
+          },
+          "nodeIndex": "MeasureTbl",
+          "nodeLineageTag": "906554db-75af-4b12-ac86-c9439b38d7d9",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 6
         }
       ],
       "name": "All tables",

@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "fafa7d5940c106908365",
+  "position": {
+    "x": 9.8969072164948457,
+    "y": 0,
+    "z": 0,
+    "height": 403.91752577319585,
+    "width": 865.979381443299,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTransactions"
+                    }
+                  },
+                  "Property": "Units Sold"
+                }
+              },
+              "queryRef": "SalesTransactions.Units Sold",
+              "nativeQueryRef": "Units Sold",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SalesTransactions"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "SalesTransactions.Year",
+              "nativeQueryRef": "Year"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "SalesTransactions"
+                        }
+                      },
+                      "Property": "Order Date"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(SalesTransactions.Order Date)",
+              "nativeQueryRef": "Count of Order Date"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "SalesTransactions"
+                      }
+                    },
+                    "Property": "Order Date"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0e35a62e67c0007c6e21",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SalesTransactions"
+              }
+            },
+            "Property": "Units Sold"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7700304f3bbb2407cee0",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SalesTransactions"
+                  }
+                },
+                "Property": "Order Date"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5c1e5278522701149c30",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SalesTransactions"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

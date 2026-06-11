@@ -5,10 +5,10 @@ table SalesTransactions
 		dataType: int64
 		formatString: 0
 		lineageTag: c39c4e2e-1cf0-4dad-b03e-4bb1c954cc8b
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: Units Sold
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column Year
 		dataType: int64
