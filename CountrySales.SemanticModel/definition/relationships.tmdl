@@ -1,0 +1,30 @@
+relationship 37b2513b-7f40-4a49-9ce7-543fc021b636
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Order.'Order Date'
+	toColumn: LocalDateTable_c9782a26-b03b-409b-a94e-6fa91ff015aa.Date
+
+relationship 871e40e6-23f9-1017-7179-99357fee9165
+	fromColumn: SalesTransactions.Sales_ID
+	toColumn: Unit.Sales_ID
+
+relationship 06dd7d6c-e142-805f-aa8c-b8d3be82fbb1
+	fromColumn: SalesTransactions.Sales_ID
+	toColumn: Product.Sales_ID
+
+relationship 5f6ae293-e244-31da-eb46-3ac6b1008458
+	fromColumn: SalesTransactions.Sales_ID
+	toColumn: Region.Sales_ID
+
+relationship 4951c640-dfd8-0554-8b18-c3bf3f211076
+	fromColumn: SalesTransactions.Sales_ID
+	toColumn: Order.Sales_ID
+
+relationship 563e3a72-8bef-41bd-a9d9-6ae4fdfc6585
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.Date
+	toColumn: LocalDateTable_4dc6328b-c0b2-4f1a-81e4-6e409beb23c0.Date
+
+relationship d65cc60f-89e1-c7e9-0da4-462e6a623a2c
+	fromColumn: SalesTransactions.'Order Date'
+	toColumn: DimDate.Date
+

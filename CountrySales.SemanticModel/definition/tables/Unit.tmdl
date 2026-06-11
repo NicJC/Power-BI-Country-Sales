@@ -1,0 +1,84 @@
+table Unit
+	lineageTag: f6985089-4dbf-4e7d-a1ea-a91a5739dcc8
+
+	column Unit_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1610616b-a6a1-40d7-877f-fe1712e795fa
+		summarizeBy: none
+		sourceColumn: Unit_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 39a28cd1-533d-4a55-a1f2-9595b96c5267
+		summarizeBy: none
+		sourceColumn: Order_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Units Sold'
+		dataType: int64
+		formatString: 0
+		lineageTag: 78ba9e67-c8fb-47de-8129-ca3d359d4da2
+		summarizeBy: none
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Price'
+		dataType: double
+		lineageTag: ceee1141-14b9-476a-9130-0d0734566725
+		summarizeBy: none
+		sourceColumn: Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unit Cost'
+		dataType: double
+		lineageTag: d9eda7b7-fbf7-4e72-bcc3-2a89d2b7d1ca
+		summarizeBy: none
+		sourceColumn: Unit Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sales_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 430bdb31-c0e6-4835-8439-e7a1da60cbdc
+		summarizeBy: none
+		sourceColumn: Sales_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Unit = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\nicjc\Power_BI_Project\Power-BI\Country_Sales.csv"), [Delimiter = ",", Columns = 8, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Country", type text}, {"Item Type", type text}, {"Order Priority", type text}, {"Units Sold", Int64.Type}, {"Unit Price", type number}, {"Unit Cost", type number}, {"Year", Int64.Type}, {"Order Date", type date}}, "en-US"),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed column type", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "Order_ID"}}),
+				    #"Added Index1" = Table.AddIndexColumn(#"Renamed Columns", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Index1",{{"Index", "Sales_ID"}}),
+				    #"Added Index2" = Table.AddIndexColumn(#"Renamed Columns1", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Added Index2",{{"Index", "Product_ID"}}),
+				    #"Added Index3" = Table.AddIndexColumn(#"Renamed Columns2", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Added Index3",{{"Index", "Region_ID"}}),
+				    #"Added Index4" = Table.AddIndexColumn(#"Renamed Columns3", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Added Index4",{{"Index", "Unit_ID"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns4",{"Unit_ID", "Order_ID", "Units Sold", "Unit Price", "Unit Cost", "Sales_ID"})
+				in
+				  #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

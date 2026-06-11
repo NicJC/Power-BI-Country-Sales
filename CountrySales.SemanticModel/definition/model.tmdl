@@ -1,0 +1,26 @@
+model Model
+	culture: en-NZ
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-NZ
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["SalesTransactions","Product","Order","Region","Unit"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table SalesTransactions
+ref table DateTableTemplate_412d3898-1591-4379-a262-b4f85f71a101
+ref table Product
+ref table Order
+ref table LocalDateTable_c9782a26-b03b-409b-a94e-6fa91ff015aa
+ref table Region
+ref table Unit
+ref table DimDate
+ref table LocalDateTable_4dc6328b-c0b2-4f1a-81e4-6e409beb23c0
+
+ref cultureInfo en-NZ
+

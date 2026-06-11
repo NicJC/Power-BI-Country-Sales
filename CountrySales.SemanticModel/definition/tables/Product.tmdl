@@ -1,0 +1,54 @@
+table Product
+	lineageTag: 09b5388d-f02d-4418-9547-454b8424cba2
+
+	column Product_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: dad768c8-6ece-4c91-aeab-4ca1042a22bb
+		summarizeBy: none
+		sourceColumn: Product_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ce67b3a0-041d-4d6d-be2d-732fc2d2bcc0
+		summarizeBy: none
+		sourceColumn: Sales_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Type'
+		dataType: string
+		lineageTag: 20fe565d-a234-4077-a81e-f16332f8f66d
+		summarizeBy: none
+		sourceColumn: Item Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\nicjc\Power_BI_Project\Power-BI\Country_Sales.csv"), [Delimiter = ",", Columns = 8, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Country", type text}, {"Item Type", type text}, {"Order Priority", type text}, {"Units Sold", Int64.Type}, {"Unit Price", type number}, {"Unit Cost", type number}, {"Year", Int64.Type}, {"Order Date", type date}}, "en-US"),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed column type", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "Order_ID"}}),
+				    #"Added Index1" = Table.AddIndexColumn(#"Renamed Columns", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Index1",{{"Index", "Sales_ID"}}),
+				    #"Added Index2" = Table.AddIndexColumn(#"Renamed Columns1", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Added Index2",{{"Index", "Product_ID"}}),
+				    #"Added Index3" = Table.AddIndexColumn(#"Renamed Columns2", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Added Index3",{{"Index", "Region_ID"}}),
+				    #"Added Index4" = Table.AddIndexColumn(#"Renamed Columns3", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Added Index4",{{"Index", "Unit_ID"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns4",{"Product_ID", "Sales_ID", "Item Type"})
+				in
+				  #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
